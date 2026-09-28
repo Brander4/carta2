@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algo que quiero decirte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#060B18',
+                            900: '#0B132B',
+                            800: '#1C2541',
+                            700: '#2A365B',
+                            600: '#3A4B7C',
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            soft: '#E6C280',
+                            accent: '#C5A059'
+                        },
+                        rose: {
+                            navy: '#1A233A',
+                            accent: '#313D5A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #060B18;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient subtle background radial glow */
+        .navy-glow {
+            background: radial-gradient(circle at 50% 30%, #1C2541 0%, #0B132B 50%, #060B18 100%);
+        }
+
+        .gold-border-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.08);
+        }
+
+        /* Gentle fade in animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism panel */
+        .glass-panel {
+            background: rgba(28, 37, 65, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060B18;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A365B;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="navy-glow min-h-screen text-slate-200 antialiased selection:bg-gold/20 selection:text-gold-light">
+
+    <!-- Discreet personalization toolbar for the sender to adjust names -->
+    <header class="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center bg-navy-950/60 backdrop-blur-md border-b border-navy-800/50 text-xs">
+        <div class="flex items-center space-x-2 text-slate-400">
+            <span class="inline-block w-2 h-2 rounded-full bg-gold/60 animate-pulse"></span>
+            <span class="tracking-wide uppercase text-[10px] sm:text-xs">Mensaje Sincero</span>
+        </div>
+        <button id="openModalBtn" onclick="togglePersonalizationModal(true)" class="flex items-center space-x-1.5 text-gold-soft hover:text-gold transition-colors px-3 py-1.5 rounded-full border border-gold/20 bg-navy-900/50">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+            </svg>
+            <span>Personalizar nombres</span>
+        </button>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-5 pt-28 pb-20 flex flex-col items-center">
+
+        <!-- Welcome Section -->
+        <section id="welcome" class="min-h-[80vh] flex flex-col justify-center items-center text-center w-full space-y-8">
+            
+            <div class="space-y-3">
+                <p class="text-gold-soft/80 font-serif italic text-lg sm:text-xl tracking-widest uppercase">Para ti, <span class="her-name font-semibold text-gold-light">Esmaylin</span></p>
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-slate-100 font-normal leading-tight">
+                    Algo que quiero<br/><span class="italic font-light text-gold-light">decirte</span>
+                </h1>
+            </div>
+
+            <!-- Navy Blue Rose Bouquet SVG Illustration -->
+            <div class="relative my-6 w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+                <div class="absolute inset-0 bg-gold/5 rounded-full blur-2xl"></div>
+                
+                <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Bouquet Wrap & Ribbon -->
+                    <path d="M120 220 L150 280 L180 220 Z" fill="#1C2541" stroke="#D4AF37" stroke-width="1" opacity="0.8"/>
+                    <path d="M125 215 C 145 225, 155 225, 175 215" stroke="#D4AF37" stroke-width="2" fill="none"/>
+                    
+                    <!-- Stems -->
+                    <path d="M140 180 L145 220" stroke="#3A4B7C" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M150 175 L150 220" stroke="#2A365B" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M160 180 L155 220" stroke="#3A4B7C" stroke-width="2.5" stroke-linecap="round"/>
+                    
+                    <!-- Leaves (Navy & Soft Gold Accents) -->
+                    <path d="M110 160 C 90 150, 95 130, 120 145 Z" fill="#1C2541" stroke="#C5A059" stroke-width="1"/>
+                    <path d="M190 160 C 210 150, 205 130, 180 145 Z" fill="#1C2541" stroke="#C5A059" stroke-width="1"/>
+                    <path d="M130 190 C 110 195, 115 210, 135 200 Z" fill="#0B132B" stroke="#D4AF37" stroke-width="0.8"/>
+                    <path d="M170 190 C 190 195, 185 210, 165 200 Z" fill="#0B132B" stroke="#D4AF37" stroke-width="0.8"/>
+
+                    <!-- Rose 1 (Center Top) -->
+                    <g transform="translate(150, 110)">
+                        <!-- Outer Petals (Deep Navy Blue) -->
+                        <path d="M0 -35 C -25 -35, -35 -10, -20 15 C -5 35, 20 30, 30 10 C 35 -15, 20 -35, 0 -35 Z" fill="#0B132B" stroke="#3A4B7C" stroke-width="1.5"/>
+                        <path d="M-18 -22 C -30 -5, -20 20, 0 25 C 20 25, 28 5, 20 -18 C 10 -30, -10 -30, -18 -22 Z" fill="#1C2541" stroke="#D4AF37" stroke-width="1"/>
+                        <!-- Inner Rose Spiral -->
+                        <path d="M-10 -10 C -15 0, 0 15, 10 5 C 15 -5, 0 -15, -5 -5 C -8 0, 0 5, 4 2" fill="none" stroke="#F3E5AB" stroke-width="1.8" stroke-linecap="round"/>
+                        <!-- Soft Gold Highlights -->
+                        <circle cx="-8" cy="-12" r="1.5" fill="#D4AF37" opacity="0.6"/>
+                        <circle cx="12" cy="8" r="1.5" fill="#D4AF37" opacity="0.6"/>
+                    </g>
+
+                    <!-- Rose 2 (Left Navy Rose) -->
+                    <g transform="translate(105, 135)">
+                        <path d="M0 -28 C -20 -28, -28 -8, -15 12 C -4 28, 16 24, 24 8 C 28 -12, 16 -28, 0 -28 Z" fill="#060B18" stroke="#2A365B" stroke-width="1.5"/>
+                        <path d="M-14 -18 C -24 -4, -16 16, 0 20 C 16 20, 22 4, 16 -14 C 8 -24, -8 -24, -14 -18 Z" fill="#1C2541" stroke="#C5A059" stroke-width="1"/>
+                        <path d="M-8 -8 C -12 0, 0 12, 8 4 C 12 -4, 0 -12, -4 -4" fill="none" stroke="#E6C280" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Rose 3 (Right Navy Rose) -->
+                    <g transform="translate(195, 135)">
+                        <path d="M0 -28 C -20 -28, -28 -8, -15 12 C -4 28, 16 24, 24 8 C 28 -12, 16 -28, 0 -28 Z" fill="#060B18" stroke="#2A365B" stroke-width="1.5"/>
+                        <path d="M-14 -18 C -24 -4, -16 16, 0 20 C 16 20, 22 4, 16 -14 C 8 -24, -8 -24, -14 -18 Z" fill="#1C2541" stroke="#C5A059" stroke-width="1"/>
+                        <path d="M-8 -8 C -12 0, 0 12, 8 4 C 12 -4, 0 -12, -4 -4" fill="none" stroke="#E6C280" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Small Accent Buds & Gold Dust -->
+                    <circle cx="120" cy="95" r="4" fill="#2A365B" stroke="#D4AF37" stroke-width="1"/>
+                    <circle cx="180" cy="95" r="4" fill="#2A365B" stroke="#D4AF37" stroke-width="1"/>
+                    
+                    <!-- Subtle Floating Golden Particles -->
+                    <circle cx="90" cy="110" r="1.5" fill="#D4AF37" opacity="0.7"/>
+                    <circle cx="210" cy="115" r="1.5" fill="#D4AF37" opacity="0.7"/>
+                    <circle cx="150" cy="65" r="2" fill="#F3E5AB" opacity="0.8"/>
+                    <circle cx="130" cy="75" r="1" fill="#D4AF37" opacity="0.5"/>
+                    <circle cx="170" cy="75" r="1" fill="#D4AF37" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <p class="text-slate-300 max-w-md font-light text-base sm:text-lg leading-relaxed">
+                Escribí esto pensando en ti, con todo el respeto, la calma y el cariño que te mereces.
+            </p>
+
+            <button onclick="scrollToSection('section-1')" class="group relative inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-navy-800/80 hover:bg-navy-700 border border-gold/30 text-gold-light font-medium text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                <span>Leer mensaje</span>
+                <svg class="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </button>
+        </section>
+
+        <!-- Section 1: A un nuevo tiempo -->
+        <section id="section-1" class="fade-in-section min-h-[60vh] flex flex-col justify-center my-12 w-full">
+            <div class="glass-panel p-6 sm:p-10 rounded-2xl space-y-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <span class="text-xs font-mono tracking-widest text-gold/60 uppercase">01 / Un momento de madurez</span>
+
+                <h2 class="font-serif text-2xl sm:text-3xl text-gold-light font-normal">
+                    Pensando en el futuro, con calma
+                </h2>
+
+                <div class="space-y-4 text-slate-300 leading-relaxed font-light text-base sm:text-lg">
+                    <p>
+                        Hola, <span class="her-name font-normal text-slate-100">Esmaylin</span>. Aunque hoy estamos separados y cada uno ha estado procesando las cosas a su manera, he guardado mucho respeto por todo lo que compartimos.
+                    </p>
+                    <p>
+                        Me gustaría expresarte que, más adelante —cuando ambos estemos mejor, más maduros, tranquilos y con la mente completamente libre— me encantaría que nos diéramos la oportunidad de volver a intentarlo.
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button onclick="scrollToSection('section-2')" class="inline-flex items-center space-x-2 text-xs font-medium text-gold hover:text-gold-light transition-colors">
+                        <span>Continuar leyendo</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Empezar desde cero y encomendar a Dios -->
+        <section id="section-2" class="fade-in-section min-h-[60vh] flex flex-col justify-center my-12 w-full">
+            <div class="glass-panel p-6 sm:p-10 rounded-2xl space-y-6 relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <span class="text-xs font-mono tracking-widest text-gold/60 uppercase">02 / Una relación totalmente nueva</span>
+
+                <h2 class="font-serif text-2xl sm:text-3xl text-gold-light font-normal">
+                    Sin arrastrar el pasado
+                </h2>
+
+                <div class="space-y-4 text-slate-300 leading-relaxed font-light text-base sm:text-lg">
+                    <p>
+                        Quiero ser muy claro en esto: no se trata de simplemente regresar a la relación anterior ni de arrastrar los momentos incómodos o los errores que vivimos.
+                    </p>
+                    <p>
+                        Mi deseo sería construir algo <strong class="font-normal text-slate-100">completamente nuevo desde cero</strong>. Un nuevo capítulo donde ambos encomendemos esa etapa a Dios, y donde cada uno dé lo mejor de sí para que sea una relación sana, madura y verdaderamente bonita.
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button onclick="scrollToSection('section-3')" class="inline-flex items-center space-x-2 text-xs font-medium text-gold hover:text-gold-light transition-colors">
+                        <span>Ir a la parte final</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Cero presión y libertad total -->
+        <section id="section-3" class="fade-in-section min-h-[60vh] flex flex-col justify-center my-12 w-full">
+            <div class="glass-panel p-6 sm:p-10 rounded-2xl space-y-6 relative overflow-hidden">
+                
+                <span class="text-xs font-mono tracking-widest text-gold/60 uppercase">03 / Libertad y respeto absoluto</span>
+
+                <h2 class="font-serif text-2xl sm:text-3xl text-gold-light font-normal">
+                    A tu propio ritmo
+                </h2>
+
+                <div class="space-y-4 text-slate-300 leading-relaxed font-light text-base sm:text-lg">
+                    <p>
+                        No hay ningún tipo de apuro ni de presión. Eres totalmente libre de tomarte el tiempo que necesites, de sentir lo que sientas y de responder con total sinceridad.
+                    </p>
+                    <p>
+                        Lo único que deseaba era abrir mi corazón de forma madura y transparente, dejándote saber lo que hay en mi mente y en mis intenciones.
+                    </p>
+                    <p class="font-serif italic text-gold-soft pt-2">
+                        Con cariño y respeto,<br/>
+                        <span class="his-name font-sans font-medium text-slate-100 not-italic">Brander</span>
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-center">
+                    <button onclick="scrollToSection('decision-section')" class="px-6 py-2.5 rounded-full bg-gold/10 hover:bg-gold/20 border border-gold/40 text-gold-light text-sm font-medium transition-colors">
+                        Ver opciones
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Decision Section -->
+        <section id="decision-section" class="fade-in-section min-h-[70vh] flex flex-col justify-center my-16 w-full text-center">
+            <div class="space-y-8">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-mono tracking-widest text-gold/60 uppercase">Tu sentir</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-slate-100 font-normal">
+                        ¿Cómo te sientes al respecto?
+                    </h2>
+                    <p class="text-slate-400 text-sm max-w-md mx-auto">
+                        Cualquiera que sea tu respuesta, la recibiré con gratitud y la respetaré plenamente.
+                    </p>
+                </div>
+
+                <!-- Respected choices -->
+                <div class="grid grid-cols-1 gap-4 max-w-lg mx-auto w-full pt-4">
+                    
+                    <!-- Option 1 -->
+                    <button onclick="selectOption('positive')" class="group p-4 sm:p-5 rounded-xl glass-panel hover:bg-navy-800/80 hover:border-gold/50 transition-all duration-300 text-left flex items-center justify-between w-full">
+                        <div class="space-y-1">
+                            <span class="block text-slate-100 font-medium text-base sm:text-lg group-hover:text-gold-light transition-colors">
+                                "Me encantaría, más adelante"
+                            </span>
+                            <span class="block text-slate-400 text-xs font-light">
+                                Dar la oportunidad a su debido tiempo.
+                            </span>
+                        </div>
+                        <svg class="w-5 h-5 text-gold/40 group-hover:text-gold transform group-hover:translate-x-1 transition-all flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                    <!-- Option 2 -->
+                    <button onclick="selectOption('thinking')" class="group p-4 sm:p-5 rounded-xl glass-panel hover:bg-navy-800/80 hover:border-gold/50 transition-all duration-300 text-left flex items-center justify-between w-full">
+                        <div class="space-y-1">
+                            <span class="block text-slate-100 font-medium text-base sm:text-lg group-hover:text-gold-light transition-colors">
+                                "Necesito tiempo para pensarlo"
+                            </span>
+                            <span class="block text-slate-400 text-xs font-light">
+                                Reflexionar sin ningún tipo de prisa.
+                            </span>
+                        </div>
+                        <svg class="w-5 h-5 text-gold/40 group-hover:text-gold transform group-hover:translate-x-1 transition-all flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Thank You / Response View Modal -->
+        <div id="responseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+            <div class="glass-panel max-w-md w-full p-6 sm:p-8 rounded-2xl text-center space-y-6 relative gold-border-glow transform scale-95 transition-transform duration-300" id="responseCard">
+                
+                <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto text-gold-light">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="font-serif text-2xl text-gold-light" id="responseTitle">Gracias por responder</h3>
+                    <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed" id="responseBody">
+                        Aprecio de corazón tu sinceridad.
+                    </p>
+                </div>
+
+                <div class="pt-2 border-t border-navy-700/50 flex flex-col space-y-3">
+                    <button onclick="sendResponseWhatsApp()" id="whatsappBtn" class="w-full py-2.5 px-4 bg-gold/20 hover:bg-gold/30 border border-gold/40 text-gold-light rounded-xl font-medium text-sm transition-colors flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                        </svg>
+                        <span>Enviar respuesta por WhatsApp</span>
+                    </button>
+
+                    <button onclick="closeResponseModal()" class="w-full py-2 px-4 text-slate-400 hover:text-slate-200 text-xs transition-colors">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalization Settings Modal (For customizing her name and his name) -->
+        <div id="personalizationModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+            <div class="glass-panel max-w-sm w-full p-6 rounded-2xl space-y-5 text-left border border-gold/30">
+                <div class="flex items-center justify-between pb-2 border-b border-navy-700/60">
+                    <h3 class="font-serif text-lg text-gold-light">Personalizar Nombres</h3>
+                    <button onclick="togglePersonalizationModal(false)" class="text-slate-400 hover:text-slate-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Ingresa los nombres antes de enviarle el enlace o mostrárselo.
+                </p>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Nombre de ella:</label>
+                        <input type="text" id="herNameInput" placeholder="Ej: Sofía" class="w-full bg-navy-950 border border-navy-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-gold/60">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Tu nombre:</label>
+                        <input type="text" id="hisNameInput" placeholder="Ej: Carlos" class="w-full bg-navy-950 border border-navy-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-gold/60">
+                    </div>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button onclick="saveNames()" class="w-full py-2 bg-gold/20 hover:bg-gold/30 border border-gold/40 text-gold-light text-xs font-medium rounded-lg transition-colors">
+                        Guardar cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // State management
+        let herName = "Esmaylin";
+        let hisName = "Brander";
+        let selectedChoiceText = "";
+
+        // Scroll observer for smooth fade-in sections
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Read URL params for easy link sharing with names (e.g., ?her=Esmaylin&his=Brander)
+            const urlParams = new URLSearchParams(window.location.search);
+            const her = urlParams.get('her');
+            const his = urlParams.get('his');
+
+            if (her) herName = her;
+            if (his) hisName = his;
+
+            updateNameElements();
+        });
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function updateNameElements() {
+            document.querySelectorAll('.her-name').forEach(el => el.textContent = herName);
+            document.querySelectorAll('.his-name').forEach(el => el.textContent = hisName);
+            document.getElementById('herNameInput').value = herName;
+            document.getElementById('hisNameInput').value = hisName;
+        }
+
+        function togglePersonalizationModal(show) {
+            const modal = document.getElementById('personalizationModal');
+            if (show) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
+
+        function saveNames() {
+            const herVal = document.getElementById('herNameInput').value.trim();
+            const hisVal = document.getElementById('hisNameInput').value.trim();
+
+            herName = herVal ? herVal : "Esmaylin";
+            hisName = hisVal ? hisVal : "Brander";
+
+            updateNameElements();
+            togglePersonalizationModal(false);
+
+            // Update URL without reload for easy sharing
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('her', herName);
+            newUrl.searchParams.set('his', hisName);
+            window.history.replaceState({}, '', newUrl);
+        }
+
+        // Option selections handling
+        function selectOption(type) {
+            const modal = document.getElementById('responseModal');
+            const card = document.getElementById('responseCard');
+            const titleEl = document.getElementById('responseTitle');
+            const bodyEl = document.getElementById('responseBody');
+
+            if (type === 'positive') {
+                selectedChoiceText = "Me encantaría, más adelante";
+                titleEl.textContent = "Gracias por tu apertura";
+                bodyEl.innerHTML = `Gracias por recibir esta propuesta con cariño. No hay prisa; cuando el tiempo sea el correcto, volveremos a conversar con el corazón tranquilo.`;
+            } else if (type === 'thinking') {
+                selectedChoiceText = "Necesito tiempo para pensarlo";
+                titleEl.textContent = "Tómate todo el tiempo";
+                bodyEl.innerHTML = `Gracias por tu sinceridad. Tómate los días y el espacio que necesites para reflexionar. Respeto profundamente tu proceso.`;
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeResponseModal() {
+            const modal = document.getElementById('responseModal');
+            const card = document.getElementById('responseCard');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function sendResponseWhatsApp() {
+            const text = encodeURIComponent(`Hola ${hisName}, leí la página que me compartiste.\n\nMi respuesta es: "${selectedChoiceText}".`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
